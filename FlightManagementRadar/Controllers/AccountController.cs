@@ -70,7 +70,8 @@ namespace FlightManagementRadar.Controllers
         {
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(ClaimTypes.Email, user.UserName),
+                new Claim(ClaimTypes.Role, user.Role),
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
@@ -80,7 +81,7 @@ namespace FlightManagementRadar.Controllers
 
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.Now.AddDays(1),
+                expires: DateTime.Now.AddMinutes(60),
                 signingCredentials: creds);
 
             String jwt = new JwtSecurityTokenHandler().WriteToken(token);
