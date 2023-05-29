@@ -4,6 +4,7 @@ using FlightManagementRadar.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlightManagementRadar.Migrations
 {
     [DbContext(typeof(FlightManagementContext))]
-    partial class FlightManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20230528035535_cancelAdded")]
+    partial class cancelAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -127,20 +129,6 @@ namespace FlightManagementRadar.Migrations
                     b.HasKey("UserName");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("FlightManagementRadar.Models.UserDto", b =>
-                {
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserName");
-
-                    b.ToTable("AdminUsers");
                 });
 
             modelBuilder.Entity("flightmanagementradar.models.CheckIn_Detail", b =>

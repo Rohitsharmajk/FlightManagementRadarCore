@@ -11,5 +11,7 @@ namespace FlightManagementRadar.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Flight_Data> Flight_Datas { get; set; }
         public DbSet<CheckIn_Detail> CheckIn_Details { get; set; }
+
+        public DbSet<UserDto> AdminUsers { get; set; }
     }
 }

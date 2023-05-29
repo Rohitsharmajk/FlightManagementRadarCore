@@ -30,14 +30,14 @@ namespace FlightManagementRadar.Controllers
         public async Task<ActionResult> Register(UserDto request)
         {
             //checked if user already present and add in database
-            bool isPresent = _context.Users.Any(user => user.UserName == request.UserName);
+            bool isPresent =  _context.Users.Any(user => user.UserName == request.UserName);
 
             if (!isPresent)
             {
                 CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
                 User user = new User() { UserName = request.UserName, PasswordHash = passwordHash, PasswordSalt = passwordSalt };
-                _context.Users.Add(user);
-                _context.SaveChanges();
+               await _context.Users.AddAsync(user);
+               await  _context.SaveChangesAsync();
                 return Ok("User successfully Added"!);
             }
 

@@ -18,6 +18,8 @@ namespace flightmanagementradar.models
         public string Username { get; set; } = String.Empty;
         public bool isCheckedIn { get; set; }
 
+        public bool isCanclled { get; set; }
+
         public  User? userDetail { get; set; }
         public  Flight_Data? flightData { get; set; }
     }

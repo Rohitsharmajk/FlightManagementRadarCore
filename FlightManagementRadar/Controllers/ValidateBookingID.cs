@@ -30,7 +30,7 @@ namespace FlightManagementRadar.Controllers
             return BadRequest("Boarding Id not found Or Already Checked In... Please Recheck!");
         }
 
-        [HttpPost("bookinghistory")]
+        [HttpGet("bookinghistory")]
         public async Task<ActionResult> BookingHistory()
         {
             //var list = _context.CheckIn_Details.Where(x => x.Username.Equals(AccountController.Username));
@@ -39,11 +39,23 @@ namespace FlightManagementRadar.Controllers
             var list =
             from x in _context.CheckIn_Details
             where x.Username.Equals(AccountController.Username)
-            select new { x.FlightId,x.Boarding_Id,x.Age,x.Gender,x.Name,x.Phonenum };
+            select new { x.FlightId,x.Boarding_Id,x.Age,x.Gender,x.Name,x.Phonenum,x.isCheckedIn };
 
             if (list == null || list.Count() > 0) Ok("No records found!");
 
             return Ok(list);
+        }
+        [HttpPost("cancelTicket")]
+        public async Task<ActionResult> CancelTicket(int bId)
+        {
+            var obj =  _context.CheckIn_Details.SingleOrDefault(x => x.Boarding_Id == bId);
+            if (obj.isCheckedIn)
+            {
+                return BadRequest("Already Checked In!");
+            }
+            _context.CheckIn_Details.Remove(obj);
+            await _context.SaveChangesAsync();
+            return Ok("Ticket Canclled Successfully!");
         }
     }
 }

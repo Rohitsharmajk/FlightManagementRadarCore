@@ -5,6 +5,7 @@ namespace FlightManagementRadar.Models
 {
     public class UserDto
     {
+        [Key]
         [MinLength(2, ErrorMessage = "Username Length should be atleast 2")]
         [Display(Name = "User Name")]
         public String UserName { get; set; }=String.Empty;

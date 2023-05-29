@@ -18,7 +18,7 @@ namespace FlightManagementRadar.Controllers
             _configuration = configuration;
             _context = context;
         }
-        [HttpPost("getdetails")]
+        [HttpGet("getdetails")]
         public async Task<ActionResult> GetDetails()
         {
                 List<string> beg = _context.Flight_Datas.Select(x => x.Source).Distinct().ToList();
@@ -26,7 +26,7 @@ namespace FlightManagementRadar.Controllers
                
                 return Ok(new {Source=beg,Destination=dest});
         }
-        [HttpPost("bookflight")]
+        [HttpGet("bookflight")]
         public async Task<ActionResult> BookFlight(string Source, string Destination, DateTime Date)
         {
             if (Date < System.DateTime.Now)

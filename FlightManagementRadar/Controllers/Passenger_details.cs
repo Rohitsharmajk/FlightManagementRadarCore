@@ -53,7 +53,7 @@ namespace FlightManagementRadar.Controllers
                 MailData maildata = new MailData();
                 maildata.EmailToId = obj2.Email;
                 maildata.EmailToName = obj2.Name;
-                maildata.EmailBody = "Thank you for booking with us, your ticket with boarding id:" + boardingID + " has been confirmed,\n please exibit the former at the time of boarding.\nwe wish you a jubilant journey";
+                maildata.EmailBody = "Dear Mr/Ms "+obj2.Name+" \n\n\nThank you for booking with us, \nYour ticket with boarding ID:" + boardingID + " has been confirmed,\nPlease exibit the former at the time of boarding.\n\n\nWe wish you a jubilant journey.\n\nSincerly,\nRdar Aviation-Booking Team";
                 maildata.EmailSubject = "Radarflights ticket confirmation";
                 _mailService.SendMail(maildata);
 
